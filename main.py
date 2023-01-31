@@ -11,7 +11,7 @@ def init_app():
         description=APP_DESC,
         version=APP_VERSION
     )
-    app.include_router(hanlp_api.router, prefix="/cantools", tags=["cantools"])
+    app.include_router(hanlp_api.router, prefix="/hanlp", tags=["hanlp"])
     return app
 
 
