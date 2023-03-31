@@ -20,6 +20,17 @@ class MyTestCase(unittest.TestCase):
             .append(hanlp.load('CTB9_CON_ELECTRA_SMALL'), output_key='con', input_key='tok')
         HanLP('2021年HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。阿婆主来到北京立方庭参观自然语义科技公司。').pretty_print()
 
+    def test_single_task1(self):
+        HanLP = hanlp.pipeline() \
+            .append(hanlp.utils.rules.split_sentence, output_key='sentences') \
+            .append(hanlp.load('FINE_ELECTRA_SMALL_ZH'), output_key='tok') \
+            .append(hanlp.load('CTB9_POS_ELECTRA_SMALL'), output_key='pos') \
+            .append(hanlp.load('MSRA_NER_ELECTRA_SMALL_ZH'), output_key='ner', input_key='tok') \
+            .append(hanlp.load('CTB9_DEP_ELECTRA_SMALL', conll=0), output_key='dep', input_key='tok') \
+            .append(hanlp.load('CTB9_CON_ELECTRA_SMALL'), output_key='con', input_key='tok')
+        aaa = HanLP('杜洪明的猫吧')
+        print(aaa)
+
 
 if __name__ == '__main__':
     unittest.main()
